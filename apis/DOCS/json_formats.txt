@@ -1,0 +1,53 @@
+
+    path('user/<int:pk>/', user_info, name='user_info'),
+    path('user/<int:pk>/subject/', get_user_subjects, name='user_subjects'),
+    
+    path('subject/', handle_subject, name='all_subjects'),
+    path('subject/<int:pk>/', handle_one_subject, name='handle_one_subject'),
+    path('subject/<int:pk>/user/', handle_subject_user, name='handle_subject_user'),
+    path('subject/<int:pk>/professor/', handle_subject_professor, name='handle_subject_professor'),
+
+    path('professor/', handle_professor, name='all_professor'),
+    path('professor/<int:pk>/', handle_one_professor, name='handle_one_professor'),
+    path('professor/<int:pk>/subject/', handle_professor_subject, name='handle_professor_subject'),
+
+    path('term/', handle_term, name='all_terms'),
+    path('term/<int:pk>/', get_term, name='term_info'),
+    path('term/<int:pk>/subject/', handle_term_subject, name='term_subjects'),
+
+
+GET   /user -- get all the users
+POST  /user -- add new user as per JSON in req. body
+
+{
+"first_name": "Rohan Vikas",
+"last_name": "Lagare",
+"email_id": "rohan.v.lagare@gmail.com",
+"start_term_id": 123456,
+"expected_end_term_id" : 1234,
+"enrolled_subjects_ids" : [ 1234,345,32,1223454,4345]
+}
+
+
+
+GET   /subject -- get all the subjects
+POST  /subject -- add new subjects as per JSON in req. body
+
+{
+"name": "dummy subject",
+"code": "DUMMY001",
+"prof_id": ,
+"term_id": 1,
+"credits" : 2,
+}
+
+GET   /user -- get all the professors
+POST  /user -- add new professor as per JSON in req. body
+
+{
+"id": 1,
+"first_name": "test_f",
+"last_name": "test_l",
+"email_id": "test@test.com",
+"phone_no": "123456789"
+}
