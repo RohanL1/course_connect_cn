@@ -78,17 +78,6 @@ WSGI_APPLICATION = 'course_connect_cn.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'djongo',
-#         'NAME': 'CourseConnectDB',
-#         'ENFORCE_SCHEMA': False,
-#         'CLIENT' : {
-#             'host' : 'mongodb+srv://admin_course_connect:OqLZecbygQeRnlF7@courseconnectdb.mrvtmho.mongodb.net/?retryWrites=true&w=majoritys'
-#         }
-#     }
-# }
-
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
