@@ -11,8 +11,13 @@ from django.shortcuts import get_object_or_404
 from datetime import datetime 
 from django.conf import settings
 
-from django.core.mail import send_mail
+# from django.core.mail import send_mail
 from decouple import config
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+import os
+from openpyxl import Workbook
+from django.core.mail import EmailMultiAlternatives
 
 @csrf_exempt
 def handle_users(request):
@@ -266,34 +271,85 @@ def send_email_subject_user(request,pk):
         from_email_id=config('EMAIL_HOST_USER')
         
         for user in comm_users :
-            msg = create_mail_body(user, comm_users)
-            print(f'Subject : {sub.__str__()},\nMessage : {msg}\n, from : {from_email_id},\n to email : {user.user.email}')
+            ( html_message , plain_message ) = create_mail_body(user, sub)
+            attachment_file = create_mail_attachment(user, comm_users, sub)
+            # print(f'Subject : {sub.__str__()},\nMessage : {plain_message}\n, from : {from_email_id},\n to email : {user.user.email}')
 
-            send_mail(
-            f'Subject : {sub.__str__()}',
-            f'Message : {msg}',
-            from_email_id,
-            [user.user.email],
-            )
+            send_email_with_attachment(f'Subject : {sub.__str__()}', plain_message, html_message, from_email_id, [user.user.email], attachment_file )
+            # send_mail(
+            # f'Subject : {sub.__str__()}',
+            # plain_message,
+            # from_email_id,
+            # [user.user.email],
+            # html_message=html_message
+            # )
+            os.system(f"rm -rf {attachment_file}")
         return JsonResponse({'status': 'success', 'data': f'sent mail to all user with enrolled sub : {sub.__str__()}'})
     else:
         return JsonResponse({'status': 'error', 'data': 'Invalid request method.'})
         
-def create_mail_body(current_user , common_users):
-    out = []
-    user_subs = Subject.objects.filter(userdata__id=current_user.id)
+
+def send_email_with_attachment(subject, message, html_message, from_email, recipient_list, attachment_path=None):
+    # Create the email message object
+    email_message = EmailMultiAlternatives(subject=subject, body=message, from_email=from_email, to=recipient_list)
+
+    # Attach the HTML message
+    email_message.attach_alternative(html_message, "text/html")
+
+    # Attach the file if provided
+    if attachment_path is not None:
+        with open(attachment_path, 'rb') as attachment:
+            file_data = attachment.read()
+            file_name = attachment.name
+            email_message.attach(file_name, file_data)
+
+    # Send the email
+    email_message.send()
+
+def create_mail_body(user, sub):
+    html_message = render_to_string('email_template.html', {'first_name' : user.first_name , 'subject' : sub.__str__() })
+    plain_message = strip_tags(html_message)
+
+    return ( html_message , plain_message )
+
+def create_mail_attachment(current_user , common_users, sub):
+    out_file = f"{current_user.id}_{sub.code}.xlsx"
+    
+    try :
+        user_subs = Subject.objects.filter(userdata__id=current_user.id)
+    except :
+        user_subs = False
+        cmd = f"touch '{out_file}'"
+        os.system(cmd)
+        return out_file
+    
+    # Create an Excel workbook and select the active worksheet
+    workbook = Workbook()
+    worksheet = workbook.active
+
+    # Write the header row to the worksheet
+    header_row = [ "First Name", "Last Name", "Email ID", "Start Term", "Common Subjects"]
+    worksheet.append(header_row)
+
     for user in common_users:
         if user == current_user :
-            print("here")
             continue
         common_subs = user_subs.filter(userdata__id=user.id)
-        out.append({
-            'user' : user.__detail__(),
-            'common_subject' : [ sub.__detail__() for sub in common_subs]
-        })
-    if not out :
-        out="NO Common Users with this subject found"
-    return out
+        common_subs = [ sub.__for_xlx__() for sub in common_subs ]
+        if common_subs:
+            row = [user.first_name, user.last_name, user.user.email, user.start_term.__str__(), common_subs[0] ]
+            worksheet.append(row)
+            for i in range(1,len(common_subs)):
+                row = ['', '', '', '', common_subs[i] ]
+                worksheet.append(row)
+            
+            worksheet.append([])
+        
+
+    # Save the workbook to a file
+    workbook.save(out_file)
+
+    return out_file
 
 
 

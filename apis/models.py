@@ -48,6 +48,9 @@ class Subject(models.Model):
     def __str__(self):
         return f"{self.code} {self.name}, {self.term}"
     
+    def __for_xlx__(self):
+        return f"{self.code} {self.name} : {self.term}"
+    
     def __detail__(self):
         return {    'id' : self.id ,
                     'name' : self.name ,
