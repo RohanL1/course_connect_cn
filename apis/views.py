@@ -9,7 +9,10 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
 from datetime import datetime 
+from django.conf import settings
 
+from django.core.mail import send_mail
+from decouple import config
 
 @csrf_exempt
 def handle_users(request):
@@ -45,6 +48,47 @@ def handle_users(request):
         return JsonResponse({'status': 'OK', 'data': 'added user.'})
     else:
         return JsonResponse({'status': 'error', 'data': 'Invalid request method.'})
+
+@csrf_exempt
+def handle_one_user(request,pk):
+    if request.method == 'GET':
+        # user_data = UserData.objects.get(user = User.objects.get(id=pk))
+        user_data = get_object_or_404(UserData,user=get_object_or_404(User, id = pk))
+        # if user_data is None :
+        #     return JsonResponse({'status': '404', 'data': 'User NOT Found.'})
+        # else:
+        # subs = [ { 'id' : i.id, 'name' : i.__detail__() } for i in user_data.enrolled_subjects.all() ]
+        return JsonResponse({'status': 'succsess',
+                                 'data' : {
+                                    'user' : user_data.__detail__(),
+                                    # 'start_term' : user_data.start_term.__detail__()
+                                 }
+                                })
+    elif request.method == 'PUT':
+        print("xyz")
+    else:
+        return JsonResponse({'status': 'error', 'data': 'Invalid request method.'})
+
+@csrf_exempt
+def handle_user_subject(request,pk):
+    if request.method == 'GET':
+        # user_data = UserData.objects.get(user = User.objects.get(id=pk))
+        user_data = get_object_or_404(UserData,user=get_object_or_404(User, id = pk))
+        # if user_data is None :
+        #     return JsonResponse({'status': '404', 'data': 'User NOT Found.'})
+        # else:
+        subs = [ { 'id' : i.id, 'name' : i.__detail__() } for i in user_data.enrolled_subjects.all() ]
+        return JsonResponse({'status': 'succsess',
+                                 'data' : {
+                                    'user' : user_data.__detail__(),
+                                    'enroll_subs' : subs,
+                                 }
+                                })
+    elif request.method == 'POST':
+        print("xyz")
+    else:
+        return JsonResponse({'status': 'error', 'data': 'Invalid request method.'})
+
 
 
 @csrf_exempt
@@ -163,11 +207,25 @@ def handle_subject_user(request,pk):
                     'users' : [ i.__detail__() for i in users ]
         }}
         return JsonResponse(out)
+    else:
+        return JsonResponse({'status': 'error', 'data': 'Invalid request method.'})
+    
+    
+@csrf_exempt
+def handle_subject_user_email_list(request,pk):
+    if request.method == 'GET':
+        sub = get_object_or_404(Subject,id=pk)
+        users = sub.userdata_set.all()
+        out = {'status': 'succsess', 
+                'data': {
+                    'subject' : sub.__detail__(),
+                    'email_list' : [ i.user.email for i in users ]
+        }}
+        return JsonResponse(out)
     elif request.method == 'POST':
         print("xyz")
     else:
         return JsonResponse({'status': 'error', 'data': 'Invalid request method.'})
-    
 
 @csrf_exempt
 def handle_subject_professor(request,pk):
@@ -200,43 +258,64 @@ def handle_one_subject(request,pk):
     
 
 @csrf_exempt
-def user_info(request,pk):
+def send_email_subject_user(request,pk):
     if request.method == 'GET':
-        user_data = UserData.objects.get(user = User.objects.get(id=pk))
-        if user_data is None :
-            return JsonResponse({'status': '404 error', 'data': 'User NOT Found.'})
-        else:
-            subs = [ { 'id' : i.id, 'name' : i.__detail__() } for i in user_data.enrolled_subjects.all() ]
-            return JsonResponse({'status': 'succsess',
-                                 'data' : {
-                                    'user' : user_data.__detail__(),
-                                    'start_term' : user_data.start_term.__detail__(),
-                                    'enroll_subs' : subs,
-                                 }
-                                })
-    elif request.method == 'POST':
-        print("xyz")
+        sub = get_object_or_404(Subject,id=pk)
+        comm_users = sub.userdata_set.all()
+        # email_list = [ user.user.email for user in comm_users]
+        from_email_id=config('EMAIL_HOST_USER')
+        
+        for user in comm_users :
+            msg = create_mail_body(user, comm_users)
+            print(f'Subject : {sub.__str__()},\nMessage : {msg}\n, from : {from_email_id},\n to email : {user.user.email}')
+
+            send_mail(
+            f'Subject : {sub.__str__()}',
+            f'Message : {msg}',
+            from_email_id,
+            [user.user.email],
+            )
+        return JsonResponse({'status': 'success', 'data': f'sent mail to all user with enrolled sub : {sub.__str__()}'})
     else:
         return JsonResponse({'status': 'error', 'data': 'Invalid request method.'})
+        
+def create_mail_body(current_user , common_users):
+    out = []
+    user_subs = Subject.objects.filter(userdata__id=current_user.id)
+    for user in common_users:
+        if user == current_user :
+            print("here")
+            continue
+        common_subs = user_subs.filter(userdata__id=user.id)
+        out.append({
+            'user' : user.__detail__(),
+            'common_subject' : [ sub.__detail__() for sub in common_subs]
+        })
+    if not out :
+        out="NO Common Users with this subject found"
+    return out
+
+
+
     
-@csrf_exempt
-def get_user_subjects(request,pk):
-    if request.method == 'GET':
-        curr_user = User.objects.get(id=pk)
-        curr_udata = UserData.objects.get(user = curr_user)
-        user_subs = curr_udata.enrolled_subjects.all()
-        if curr_user is None and curr_udata is None :
-            return JsonResponse({'status': 'error', 'data': 'User NOT Found.'})
-        else:
-            out_json = {'status': 'succsess',
-                                    'id': pk,
-                                    'name' : f"{curr_udata.first_name} {curr_udata.last_name}",
-                                    'subjects' : [ i.__detail__() for i in user_subs ]  
-                                    }
-            print(out_json)
-            return JsonResponse(out_json)
-    else:
-        return JsonResponse({'status': 'error', 'data': 'Invalid request method.'})
+# @csrf_exempt
+# def get_user_subjects(request,pk):
+#     if request.method == 'GET':
+#         curr_user = User.objects.get(id=pk)
+#         curr_udata = UserData.objects.get(user = curr_user)
+#         user_subs = curr_udata.enrolled_subjects.all()
+#         if curr_user is None and curr_udata is None :
+#             return JsonResponse({'status': 'error', 'data': 'User NOT Found.'})
+#         else:
+#             out_json = {'status': 'succsess',
+#                                     'id': pk,
+#                                     'user' : curr_udata.__detail__(),
+#                                     'subjects' : [ i.__detail__() for i in user_subs ]  
+#                                     }
+#             print(out_json)
+#             return JsonResponse(out_json)
+#     else:
+#         return JsonResponse({'status': 'error', 'data': 'Invalid request method.'})
 
 
 @csrf_exempt

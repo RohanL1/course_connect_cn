@@ -35,12 +35,14 @@ urlpatterns = [
     # path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     path('user/', handle_users, name='all_users'),
-    path('user/<int:pk>/', user_info, name='user_info'),
-    path('user/<int:pk>/subject/', get_user_subjects, name='user_subjects'),
+    path('user/<int:pk>/', handle_one_user, name='user_info'),
+    path('user/<int:pk>/subject/', handle_user_subject, name='user_subjects'),
     
     path('subject/', handle_subject, name='all_subjects'),
     path('subject/<int:pk>/', handle_one_subject, name='handle_one_subject'),
     path('subject/<int:pk>/user/', handle_subject_user, name='handle_subject_user'),
+    path('subject/<int:pk>/user/email_list', handle_subject_user_email_list, name='handle_subject_user_email_list'),
+    path('subject/<int:pk>/user/send_email', send_email_subject_user, name='send_email_subject_user'),
     path('subject/<int:pk>/professor/', handle_subject_professor, name='handle_subject_professor'),
 
     path('professor/', handle_professor, name='all_professor'),

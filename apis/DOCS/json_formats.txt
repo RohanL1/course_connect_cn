@@ -41,8 +41,8 @@ POST  /subject -- add new subjects as per JSON in req. body
 "credits" : 2,
 }
 
-GET   /user -- get all the professors
-POST  /user -- add new professor as per JSON in req. body
+GET   /professor -- get all the professors
+POST  /professor -- add new professor as per JSON in req. body
 
 {
 "id": 1,
