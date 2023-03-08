@@ -4,6 +4,9 @@ import json
 from random import randint
 import os
 from django.http import JsonResponse
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
 
 class PING_ACK():
     __instance = None
@@ -31,7 +34,7 @@ class PING_ACK():
     
     def local_setup(self):
 
-        with open('/mnt/r/SCU/Academics/Winter 2023/DS/project/code/back_end/ping_ack/compute_server/ping_ack/ping_mod/local_settings.json', 'r') as openfile:
+        with open(str(BASE_DIR) + '/local_settings.json', 'r') as openfile:
             # Reading from json file
             local_settings = json.load(openfile)
 
