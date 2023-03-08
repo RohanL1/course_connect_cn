@@ -1,0 +1,14 @@
+sudo apt-get update
+sudo apt-get upgrade
+
+sudo apt-get install python3-pip
+pip install django
+export PATH="/home/ubuntu/.local/bin:$PATH"
+
+
+:: libs :: 
+pip install python-decouple
+pip install djangorestframework
+pip2 install psycopg2-binary
+pip install openpyxl
+pip install schedule
