@@ -77,3 +77,8 @@ http://localhost:8000/ping/setserver/
         "message_Broker" :  "127.0.0.1",
         "server_Leader" :  "127.0.0.1"
 }
+
+http://localhost:8000/ping/alive/
+{
+        "heartbeat" : 4100
+}

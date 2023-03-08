@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'apis.apps.ApisConfig',
+    'ping.apps.PingConfig',
+    'schd.apps.SchdConfig',
     'rest_framework',
 ]
 
