@@ -24,7 +24,7 @@
 
 
 from django.urls import path, include
-from rest_framework_simplejwt.views import TokenRefreshView
+# from rest_framework_simplejwt.views import TokenRefreshView
 from .views import *
 
 urlpatterns = [
@@ -37,6 +37,7 @@ urlpatterns = [
     path('user/', handle_users, name='all_users'),
     path('user/<int:pk>/', handle_one_user, name='user_info'),
     path('user/<int:pk>/subject/', handle_user_subject, name='user_subjects'),
+    path('test/post/', test_post, name='test_post'),
     
     path('subject/', handle_subject, name='all_subjects'),
     path('subject/<int:pk>/', handle_one_subject, name='handle_one_subject'),
@@ -50,6 +51,6 @@ urlpatterns = [
     path('professor/<int:pk>/subject/', handle_professor_subject, name='handle_professor_subject'),
 
     path('term/', handle_term, name='all_terms'),
-    path('term/<int:pk>/', get_term, name='term_info'),
+    path('term/<int:pk>/', handle_one_term, name='term_info'),
     path('term/<int:pk>/subject/', handle_term_subject, name='term_subjects'),
 ]

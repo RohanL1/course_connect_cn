@@ -45,9 +45,35 @@ GET   /professor -- get all the professors
 POST  /professor -- add new professor as per JSON in req. body
 
 {
-"id": 1,
 "first_name": "test_f",
 "last_name": "test_l",
 "email_id": "test@test.com",
 "phone_no": "123456789"
+}
+
+
+GET   /term -- get all the professors
+POST  /term -- add new professor as per JSON in req. body
+
+{
+"name": "test_f",
+"end_date": "2023-12-31",
+"start_date": "2023-01-31",
+"year": "2023"
+}
+
+
+
+http://localhost:8000/ping/set_up_heartbeat/
+{
+        "recv_sequence" : 4000
+
+}
+
+
+http://localhost:8000/ping/setserver/
+{
+        "destination_host" : "127.0.0.1",
+        "message_Broker" :  "127.0.0.1",
+        "server_Leader" :  "127.0.0.1"
 }

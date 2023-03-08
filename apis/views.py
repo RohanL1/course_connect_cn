@@ -2,14 +2,18 @@
 # from rest_framework.response import Response
 # from rest_framework.views import APIView
 # from rest_framework_simplejwt.tokens import RefreshToken
-from .models import *
 # from .serializers import UserSerializer
+
+from .models import *
+
 from django.http import JsonResponse
 import json
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
 from datetime import datetime 
 from django.conf import settings
+
+import httplib2
 
 # from django.core.mail import send_mail
 from decouple import config
@@ -54,6 +58,15 @@ def handle_users(request):
     else:
         return JsonResponse({'status': 'error', 'data': 'Invalid request method.'})
 
+
+@csrf_exempt
+def test_post(request):
+    req = httplib2.Http()
+    r, content = req.request('https://www.google.com',method="GET",body=None)
+    print(content)
+    return JsonResponse({'status': 'OK'}) 
+
+
 @csrf_exempt
 def handle_one_user(request,pk):
     if request.method == 'GET':
@@ -70,7 +83,22 @@ def handle_one_user(request,pk):
                                  }
                                 })
     elif request.method == 'PUT':
-        print("xyz")
+        # create a new user with given data 
+        req_user_data = json.loads(request.body)
+
+        user_data = get_object_or_404(UserData,user=get_object_or_404(User, id = pk))
+
+        user_data.first_name = req_user_data['first_name']
+        user_data.last_name = req_user_data['last_name']
+        user_data.start_term = Term.objects.get(id=req_user_data['start_term_id'])
+        user_data.expected_end_term = Term.objects.get(id=req_user_data['expected_end_term_id'])
+
+        for t_id in req_user_data['enrolled_subjects_ids']:
+            user_data.enrolled_subjects.add(Subject.objects.get(id=t_id))
+
+        user_data.save()
+
+        return JsonResponse({'status': 'OK', 'data': 'added user.'})
     else:
         return JsonResponse({'status': 'error', 'data': 'Invalid request method.'})
 
@@ -202,6 +230,18 @@ def handle_term(request):
     
 
 @csrf_exempt
+def handle_one_term(request,pk):
+    if request.method == 'GET':
+        term = get_object_or_404(Term,id=pk)
+        # prof = prof.__detail__() if type(prof) == 'apis.models.Professor' else prof
+        return JsonResponse({'status': 'succsess',
+                                 'data' : term.__detail__()
+                            })
+    else:
+        return JsonResponse({'status': 'error', 'data': 'Invalid request method.'})
+
+
+@csrf_exempt
 def handle_subject_user(request,pk):
     if request.method == 'GET':
         sub = get_object_or_404(Subject,id=pk)
@@ -274,15 +314,9 @@ def send_email_subject_user(request,pk):
             ( html_message , plain_message ) = create_mail_body(user, sub)
             attachment_file = create_mail_attachment(user, comm_users, sub)
             # print(f'Subject : {sub.__str__()},\nMessage : {plain_message}\n, from : {from_email_id},\n to email : {user.user.email}')
-
+            # send_mail
             send_email_with_attachment(f'Subject : {sub.__str__()}', plain_message, html_message, from_email_id, [user.user.email], attachment_file )
-            # send_mail(
-            # f'Subject : {sub.__str__()}',
-            # plain_message,
-            # from_email_id,
-            # [user.user.email],
-            # html_message=html_message
-            # )
+            
             os.system(f"rm -rf {attachment_file}")
         return JsonResponse({'status': 'success', 'data': f'sent mail to all user with enrolled sub : {sub.__str__()}'})
     else:
@@ -315,17 +349,20 @@ def create_mail_body(user, sub):
 def create_mail_attachment(current_user , common_users, sub):
     out_file = f"{current_user.id}_{sub.code}.xlsx"
     
+    # Create an Excel workbook and select the active worksheet
+    workbook = Workbook()
+    worksheet = workbook.active
+    
     try :
         user_subs = Subject.objects.filter(userdata__id=current_user.id)
     except :
         user_subs = False
-        cmd = f"touch '{out_file}'"
-        os.system(cmd)
+        # cmd = f"touch '{out_file}'"
+        # os.system(cmd)
+        worksheet.append(["COMMON USERS NOT FOUND."])
         return out_file
     
-    # Create an Excel workbook and select the active worksheet
-    workbook = Workbook()
-    worksheet = workbook.active
+
 
     # Write the header row to the worksheet
     header_row = [ "First Name", "Last Name", "Email ID", "Start Term", "Common Subjects"]
