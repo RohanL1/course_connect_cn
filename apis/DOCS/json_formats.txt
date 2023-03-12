@@ -72,34 +72,75 @@ GET professor/<int:pk>/subject/	        --get all subjects of specific professor
 GET term/<int:pk>/			--get info of specific term for given KEY
 GET term/<int:pk>/subject/		--get all subjects of specific term
 
-http://localhost:8000/ping/set_up_heartbeat/
+
+Details :
+
+We are using python and Django framework to create compute nodes.
+compute nodes will do following tasks
+	-create server to listen to incomming req.
+	-connect with the AWS RDS Postgres database  (We are using Django ORM to manage following)
+		-to store all the data
+		-to create records for user, terms, subjects, from incoming request
+		-to update records from incoming request
+	
+	-listen to incoming requests, and send response as mentioned above
+	-send mails to users
+
+## Distributed algos used (Rushang will add info about below)
+-ping-ack
+-fault tolerance
+-leader election
+-multi-node load balancing
+
+
+##send mail algo
+
+input 	- subject (name, term)
+output 	- email to users with xlxs file
+
+- find database id from given (name, term)
+- get users of all given subject id
+- for each user :
+	- check for common subjects for other common users
+	- create a xlxs file with comm. users (user name, email id, start Term), and their subjects (subject code and term)
+	- create html email body according to user first name
+	- send mail to users with above email body and xlxs file as attachment using django mail module and google smtp service
+
+## other frameworks. py module used 
+
+decouple - used to decouple ids, passwords and connetion setting from code files
+openpyxl - used to create XLXS files for attachment
+Django csrf_exempt - as we are not using auth at compute node (handing the same in front end Django), so we are exempting auth process in views.
+
+
+POST  http://localhost:8000/ping/set_up_heartbeat/
 {
         "recv_sequence" : 4000
 
 }
 
 
-http://localhost:8000/ping/setserver/
+POST  http://localhost:8000/ping/setserver/
 {
         "destination_host" : "127.0.0.1",
         "message_Broker" :  "127.0.0.1",
         "server_Leader" :  "127.0.0.1"
 }
 
-http://localhost:8000/ping/alive/
+POST  http://localhost:8000/ping/alive/
 {
         "heartbeat" : 4100
 }
 
 
 
-http://localhost:8000/node/set/server/
+POST  http://localhost:8000/node/set/server/
 {
     "node_addrs" : "127.0.0.1:8000" 
 }
 
 
-http://127.0.0.1:8000/node/set/neighbour/
+POST  http://127.0.0.1:8000/node/set/neighbour/
 {
     "next" : "127.0.0.1:8000",
     "successor" : "127.0.0.1:8000" 
@@ -114,18 +155,18 @@ http://127.0.0.1:8000/node/set/neighbour/
 }
 
 
-http://127.0.0.1:8000/node/set/leader/
+POST  http://127.0.0.1:8000/node/set/leader/
 {
     "leader" : "127.0.0.4:8000"
 }
 
-http://127.0.0.1:8000/node/set/broker/
+POST  http://127.0.0.1:8000/node/set/broker/
 {
     "broker" : "127.0.0.4:8000"
 }
 
 
-http://127.0.0.1:8000/node/set/heartbeat/
+POST  http://127.0.0.1:8000/node/set/heartbeat/
 {
     "sequence" : 1234,
     "address" : "127.0.0.4:8000"
