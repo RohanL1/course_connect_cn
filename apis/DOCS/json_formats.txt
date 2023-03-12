@@ -82,3 +82,43 @@ http://localhost:8000/ping/alive/
 {
         "heartbeat" : 4100
 }
+
+
+
+http://localhost:8000/node/set/server/
+{
+    "node_addrs" : "127.0.0.1:8000" 
+}
+
+
+http://127.0.0.1:8000/node/set/neighbour/
+{
+    "next" : "127.0.0.1:8000",
+    "successor" : "127.0.0.1:8000" 
+}
+
+{
+    "next" : "127.0.0.4:8000"
+}
+
+{
+    "successor" : "127.0.0.1:8000" 
+}
+
+
+http://127.0.0.1:8000/node/set/leader/
+{
+    "leader" : "127.0.0.4:8000"
+}
+
+http://127.0.0.1:8000/node/set/broker/
+{
+    "broker" : "127.0.0.4:8000"
+}
+
+
+http://127.0.0.1:8000/node/set/heartbeat/
+{
+    "sequence" : 1234,
+    "address" : "127.0.0.4:8000"
+}
