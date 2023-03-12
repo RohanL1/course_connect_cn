@@ -72,13 +72,6 @@ compute nodes will do following tasks
 	-listen to incoming requests, and send response as mentioned above
 	-send mails to users
 
-## Distributed algos used (Rushang will add info about below)
--ping-ack
--fault tolerance
--leader election
--multi-node load balancing
-
-
 ##send mail algo
 
 input 	- subject (name, term)
