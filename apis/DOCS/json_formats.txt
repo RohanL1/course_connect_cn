@@ -62,7 +62,15 @@ POST  /term -- add new professor as per JSON in req. body
 "year": "2023"
 }
 
-
+GET user/<int:pk>/			--get info of specific user for given KEY
+GET user/<int:pk>/subject/ 		--get all subjects of given users 
+GET subject/<int:pk>/   		--get info of specific subject for given KEY
+GET subject/<int:pk>/user/		--get all users of specific subject
+GET subject/<int:pk>/professor/	        --get professor of specific subject
+GET professor/<int:pk>/			--get info of specific professor for given KEY
+GET professor/<int:pk>/subject/	        --get all subjects of specific professor
+GET term/<int:pk>/			--get info of specific term for given KEY
+GET term/<int:pk>/subject/		--get all subjects of specific term
 
 http://localhost:8000/ping/set_up_heartbeat/
 {
