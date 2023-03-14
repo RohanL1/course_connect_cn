@@ -45,8 +45,12 @@ def handle_tasks(request):
             user_data = UserData.objects.get(user = user)
             sub_dict = req_data['subscribe']
             term_str = list(sub_dict.keys())[0]
-            term = get_term_from_str(term_str)
             sub_list = sub_dict[term_str]
+
+            if len(sub_list) == 0:
+                return JsonResponse({'ACK' : req_id, 'requestID' : req_id, 'status': 'OK', 'data': 'SUBSCIBE task completed.'})
+
+            term = get_term_from_str(term_str)
 
             new = Subscribed.objects.create()
             for sub in sub_list:
