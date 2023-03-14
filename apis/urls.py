@@ -42,8 +42,8 @@ urlpatterns = [
     path('subject/', handle_subject, name='all_subjects'),
     path('subject/<int:pk>/', handle_one_subject, name='handle_one_subject'),
     path('subject/<int:pk>/user/', handle_subject_user, name='handle_subject_user'),
-    path('subject/<int:pk>/user/email_list', handle_subject_user_email_list, name='handle_subject_user_email_list'),
-    path('subject/<int:pk>/user/send_email', send_email_subject_user, name='send_email_subject_user'),
+    path('subject/<int:pk>/user/email_list/', handle_subject_user_email_list, name='handle_subject_user_email_list'),
+    path('subject/<int:pk>/user/send_email/', send_email_subject_user, name='send_email_subject_user'),
     path('subject/<int:pk>/professor/', handle_subject_professor, name='handle_subject_professor'),
 
     path('professor/', handle_professor, name='all_professor'),
@@ -53,4 +53,7 @@ urlpatterns = [
     path('term/', handle_term, name='all_terms'),
     path('term/<int:pk>/', handle_one_term, name='term_info'),
     path('term/<int:pk>/subject/', handle_term_subject, name='term_subjects'),
+
+    path('task/', handle_tasks, name='handle incoming tasks from leader'),
+    path('send_email/', send_email_to_subcribed_user, name='send_email_to_subcribed_user'),
 ]

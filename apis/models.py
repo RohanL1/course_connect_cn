@@ -20,6 +20,8 @@ class Term(models.Model):
                     'start_date' : self.start_date if self.start_date else tmp,
                     'end_date' : self.end_date if self.end_date else tmp,
                 }
+    def  get_term_year(self):
+        return self.year.strftime('%Y') if self.year else 9999
 
 class Professor(models.Model):
     first_name = models.CharField(max_length=255)
@@ -97,4 +99,15 @@ class UserData(models.Model):
                     'start_term' : self.start_term.__str__()
                 }
 
+class Subscribed(models.Model):
+    user = models.ForeignKey(UserData, related_name='subscribed_user', on_delete=models.SET_NULL,null=True)
+    subject = models.ForeignKey(Subject, related_name='subscribed_subject', on_delete=models.SET_NULL,null=True)
 
+    def __str__(self):
+        return f"{self.user.__str__()} -> {self.subject.__str__()}" 
+
+    def __detail__(self):
+        return {
+            "user" : self.user.__detail__(),
+            "subject" : self.subject.__detail__()
+        }

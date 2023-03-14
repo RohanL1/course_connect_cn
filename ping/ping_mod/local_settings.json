@@ -1,8 +1,0 @@
-{
-    "__sequence" : 1234, 
-    "__own_sequence" : 234, 
-    "__host" : "http://127.0.0.1:8000", 
-    "__counter" : 0,
-    "__msg_brkr" : "http://127.0.0.1:8000", 
-    "__leader" : "http://127.0.0.1:8000"
-}

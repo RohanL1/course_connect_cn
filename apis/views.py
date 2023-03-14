@@ -23,6 +23,102 @@ import os
 from openpyxl import Workbook
 from django.core.mail import EmailMultiAlternatives
 
+
+sub_key = 'subscribe'
+# tmp_pub_dict = {
+#     'requestID': 73, 
+#     'first_name': 'Rohan', 
+#     'last_name': 'Lagare', 
+#     'email': 'rlagare@scu.edu', 
+#     'startQuarter': 'Fall 2021', 
+#             'term': {
+#             'Fall 2021': ['COEN 202', 'COEN 201'], 
+#             'Winter 2022': ['COEN 272', 'COEN 275'], 
+#             'Spring 2022': ['COEN 239', 'COEN 240'], 
+#             'Summer 2022': ['COEN 338', 'COEN 346'], 
+#             'Fall 2022': ['COEN 383', 'COEN 396'], 
+#             'Winter 2023': ['COEN 210', 'COEN 225']
+#             }, 
+#     'planned': {
+#         'Spring 2023': ['COEN 251', 'COEN 266']
+#         }
+# }
+
+# tmp_sub_dict = {
+#   'requestID': 73,
+#   'email': 'rlagare@scu.edu',
+#   'subscribe': {
+#     'Spring 2023': ['COEN 251', 'COEN 266']
+#    }
+# }
+
+
+def get_term_from_str(str):
+    tmp = str.split()
+    return Term.objects.get(name__iexact=tmp[0] , year__year = int(tmp[1]))
+
+def get_sub_from_str(str, term):
+    code = str.replace(" ", "")
+    return Subject.objects.get(code= code , term=term)
+
+@csrf_exempt
+def handle_tasks(request):
+    if request.method == 'POST':
+        # create a new user with given data 
+        req_data = json.loads(request.body)
+        req_id = req_data['requestID']
+        if sub_key in req_data.keys(): #SUBSCIBE
+            user = User.objects.get(email = req_data['email'])
+            user_data = UserData.objects.get(user = user)
+            sub_dict = req_data['subscribe']
+            term_str = list(sub_dict.keys())[0]
+            term = get_term_from_str(term_str)
+            sub_list = sub_dict[term_str]
+
+            new = Subscribed.objects.create()
+            for sub in sub_list:
+                subject = get_sub_from_str(sub, term)
+                new.subject = subject
+                new.user = user_data
+            new.save()
+            print("SUBSCIBE")
+            return JsonResponse({'requestID' : req_id, 'status': 'OK', 'data': 'SUBSCIBE task completed.', "details": new.__detail__()})
+        else :                         #PUBLISH 
+            new_user = User.objects.create(username=req_data['email'])
+            new_user.email = req_data['email']
+            new_user.save()
+
+            new_user_data = UserData.objects.create(user=new_user)
+            new_user_data.first_name = req_data['first_name']
+            new_user_data.last_name = req_data['last_name']
+            st_term = get_term_from_str(req_data['startQuarter'])
+            new_user_data.start_term = Term.objects.get(id= st_term.id )
+            # new_user_data.expected_end_term = Term.objects.get(id=req_data['expected_end_term_id'])
+
+            term_dict = req_data['term']
+            for term_str in term_dict.keys():
+                curr_term = get_term_from_str(term_str)
+                sub_list = term_dict[term_str]
+                for sub in sub_list:
+                    subject = get_sub_from_str(sub, curr_term)
+                    new_user_data.enrolled_subjects.add(subject)
+            
+            planned_dict = req_data['planned']
+            term_str = list(planned_dict.keys())[0]
+            curr_term = get_term_from_str(term_str)
+            sub_list = planned_dict[term_str]
+            for sub in sub_list:
+                    subject = get_sub_from_str(sub, curr_term)
+                    new_user_data.enrolled_subjects.add(subject)
+            
+            new_user_data.save()
+            print("PUBLISH")
+        return JsonResponse({'requestID' : req_id, 'status': 'OK', 'data': 'PUBLISH task completed.'})
+    else:
+        req_data = json.loads(request.body)
+        req_id = req_data['requestID']
+        return JsonResponse({'requestID' : req_id, 'status': 'error', 'data': 'Invalid request method.'})
+
 @csrf_exempt
 def handle_users(request):
     if request.method == 'GET':
@@ -301,6 +397,38 @@ def handle_one_subject(request,pk):
     else:
         return JsonResponse({'status': 'error', 'data': 'Invalid request method.'})
     
+
+# @csrf_exempt
+# def add_subcriber(request):
+#     if request.method == 'POST':
+
+#         return JsonResponse({'status': 'success', 'data': f'sent mail to all subscribed users'})
+#     else:
+#         return JsonResponse({'status': 'error', 'data': 'Invalid request method.'})
+
+@csrf_exempt
+def send_email_to_subcribed_user(request):
+    if request.method == 'GET':
+        subcribed_subs = Subscribed.objects.values_list("subject").distinct()
+        # subcribed_user = Subscribed.objects.values_list("user").distinct()
+        from_email_id=config('EMAIL_HOST_USER')
+        for sub_id in subcribed_subs:
+            sub = Subject.objects.get(id=sub_id[0])
+            subcribed_user = Subscribed.objects.filter(subject = sub).values_list("user").distinct()
+            enrolled_user = sub.userdata_set.all()
+
+            for user_id in subcribed_user:
+                user = UserData.objects.get(id=user_id[0])
+                ( html_message , plain_message ) = create_mail_body(user, sub)
+                attachment_file = create_mail_attachment(user, enrolled_user, sub)
+                # print(f'Subject : {sub.__str__()},\nMessage : {plain_message}\n, from : {from_email_id},\n to email : {user.user.email}')
+                # send_mail
+                send_email_with_attachment(f'Subject : {sub.__str__()}', plain_message, html_message, from_email_id, [user.user.email], attachment_file )
+                os.system(f"rm -rf {attachment_file}")
+        return JsonResponse({'status': 'success', 'data': f'sent mail to all subscribed users'})
+    else:
+        return JsonResponse({'status': 'error', 'data': 'Invalid request method.'})
+
 
 @csrf_exempt
 def send_email_subject_user(request,pk):

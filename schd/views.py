@@ -1,50 +1,35 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
-from ping.views import * 
-# import ping_ack.ping_mod 
+from compute_node.compute_node_mod import compute_node
+
+import schedule
 import threading
 import time
-import schedule
-from django.views.decorators.csrf import csrf_exempt
 
-# Create your views here
+# Create your views here.
 
-# def home(request):
-#     if(request.find('/start')>0):
-#         start_schd()
-#     else:
-#         return HttpResponse("Welcome to scheduler")
+def sending_emails():
+    print(f"\nSending Email\n")
+    compute_node.Compute_Node().send_email()
 
-def check_failure_job ():
-    server_alive.check_failure()
-    return
-
-
-def send_alive_ping_job ():
-    server_alive.send_ping()
-    return
-
-
-@csrf_exempt
-def test(req):
-    return JsonResponse({'status': 'OK', 'data': 'TEST.'})
-
-@csrf_exempt
-def start_schd(req):
-
-    def threader(job_func):
-        job_thread = threading.Thread(target=job_func)
+def sending_hearbeat():
+    print(f"\nSending Heartbeat\n")
+    compute_node.Compute_Node().send_alive_ping()
+    
+def checking_failure():
+    print(f"\nChecking Node Failure\n")
+    compute_node.Compute_Node().check_node_failure()
+    
+def start_scheduling():
+    
+    def threader(job):
+        job_thread = threading.Thread(target=job)
         job_thread.start()
         
-    schedule.every(5).seconds.do(threader,check_failure_job)
-    schedule.every(5).seconds.do(threader,send_alive_ping_job)
-    # schedule.every(700).seconds.do(threader,check_neighbour)
+    schedule.every(10).seconds.do(threader,sending_hearbeat)
+    schedule.every(15).seconds.do(threader,checking_failure)
+    schedule.every(2).minute.do(threader,sending_emails)
 
-    first_resp= True
     while True:
         schedule.run_pending()
-        time.sleep(5)
-        # if first_resp : 
-        #     first_resp = False
-        #     return JsonResponse({'status': 'OK', 'data': 'start.'})
+        time.sleep(20)
