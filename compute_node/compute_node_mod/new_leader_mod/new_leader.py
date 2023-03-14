@@ -12,8 +12,8 @@ class Leader:
     __total_sys_nodes = None
     __http_header = 'http://'
     __broadcast_api = "/compute_node/update_rings"
-    __task_api = '/api/task/'
-    __send_email_api = '/api/send_email/'
+    __task_api = '/apis/task/'
+    __send_email_api = '/apis/send_email/'
     
     def __new__(cls):
         if(cls.__instance == None):
@@ -67,6 +67,7 @@ class Leader:
 
     def send_email(self):
         email_addrs = self.__http_header + self.__leader_IP + self.__send_email_api
+        print(email_addrs)
         http = httplib2.Http()
         http.request(email_addrs,method="GET")
         

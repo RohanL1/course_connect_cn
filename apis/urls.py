@@ -37,7 +37,7 @@ urlpatterns = [
     path('user/', handle_users, name='all_users'),
     path('user/<int:pk>/', handle_one_user, name='user_info'),
     path('user/<int:pk>/subject/', handle_user_subject, name='user_subjects'),
-    path('test/post/', test_post, name='test_post'),
+    # path('test/post/', test_post, name='test_post'),
     
     path('subject/', handle_subject, name='all_subjects'),
     path('subject/<int:pk>/', handle_one_subject, name='handle_one_subject'),

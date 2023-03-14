@@ -13,6 +13,39 @@ aws_node = compute_node.Compute_Node()
 ###########################################################
 
 @csrf_exempt
+def set_server(http_req):
+    if(http_req.method == 'POST'):
+        data = json.loads(http_req.body)
+
+        #set server IP
+        addrs = data['node_addrs']
+        aws_node.set_node_addrs(addrs)
+
+        #set leader
+        leader_adr = data['leader']
+        aws_node.set_leader_addrs(leader_adr)
+
+        #set broker
+        addrs = data['broker']
+        aws_node.set_message_broker(addrs)
+
+        #set successor and next
+        next_adrs = data['next'] if 'next' in data.keys() else None
+        successor_adr = data['successor'] if 'successor' in data.keys() else None
+        if(next_adrs != None):
+            aws_node.set_next_addrs(next_adrs)
+        if(successor_adr != None):
+            aws_node.set_successor_addrs(successor_adr)
+        
+        #set sequence and address
+        seq = data['sequence']
+        addrs = data['address']
+        aws_node.set_recv_sequence(seq,addrs)
+
+        return JsonResponse({'status': 'OK'})
+
+
+@csrf_exempt
 def set_server_IP(http_req):
     if(http_req.method == 'POST'):
         data = json.loads(http_req.body)

@@ -99,26 +99,17 @@ openpyxl - used to create XLXS files for attachment
 Django csrf_exempt - as we are not using auth at compute node (handing the same in front end Django), so we are exempting auth process in views.
 
 
-POST  http://localhost:8000/ping/set_up_heartbeat/
+
+POST http://localhost:8000/node/set/init/
 {
-        "recv_sequence" : 4000
-
+    "node_addrs" : "127.0.0.1:8000",
+    "leader" : "127.0.0.1:8000",
+    "broker" : "127.0.0.4:8000",
+    "next" : "127.0.0.1:8000",
+    "successor" : "127.0.0.1:8000",
+    "sequence" : 1234,
+    "address" : "127.0.0.4:8000"
 }
-
-
-POST  http://localhost:8000/ping/setserver/
-{
-        "destination_host" : "127.0.0.1",
-        "message_Broker" :  "127.0.0.1",
-        "server_Leader" :  "127.0.0.1"
-}
-
-POST  http://localhost:8000/ping/alive/
-{
-        "heartbeat" : 4100
-}
-
-
 
 POST  http://localhost:8000/node/set/server/
 {
@@ -143,7 +134,7 @@ POST  http://127.0.0.1:8000/node/set/neighbour/
 
 POST  http://127.0.0.1:8000/node/set/leader/
 {
-    "leader" : "127.0.0.4:8000"
+    "leader" : "127.0.0.1:8000"
 }
 
 POST  http://127.0.0.1:8000/node/set/broker/
@@ -156,4 +147,54 @@ POST  http://127.0.0.1:8000/node/set/heartbeat/
 {
     "sequence" : 1234,
     "address" : "127.0.0.4:8000"
+}
+
+
+POST  http://127.0.0.1:8000/apis/task/
+{
+  "requestID": 73,
+  "email": "mshah4@scu.edu",
+  "subscribe": {
+    "test_2 2024": ["DUMMY 002"]
+   }
+}
+
+
+{
+    "requestID": 73, 
+    "first_name": "Meet", 
+    "last_name": "Shah", 
+    "email": "mshah4@scu.edu", 
+    "startQuarter": "test_f 2023", 
+            "term": {
+            "test_f 2023": ["DUMMY 001", "DUMMY 003"], 
+            "test_2 2024": ["DUMMY 002"]
+            }, 
+    "planned": {
+        "test_2 2024": ["DUMMY 002"]
+        }
+}
+
+
+
+ /// deleted
+POST  http://localhost:8000/ping/setserver/
+{
+        "destination_host" : "127.0.0.1",
+        "message_Broker" :  "127.0.0.1",
+        "server_Leader" :  "127.0.0.1"
+}
+
+POST  http://localhost:8000/ping/set_up_heartbeat/
+{
+        "recv_sequence" : 4000
+
+}
+
+
+
+
+POST  http://localhost:8000/ping/alive/
+{
+        "heartbeat" : 4100
 }

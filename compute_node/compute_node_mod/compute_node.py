@@ -49,13 +49,14 @@ class Compute_Node:
     
     def set_leader_addrs(self,address):
         self.reset_counter()
-        self.__node_leader.update_leader(address)
+        self.__node_leader.set_leader_addrs(address)
         
     def set_message_broker(self,brkr_addrs):
         self.__message_broker = brkr_addrs
         
     def set_recv_sequence(self,sequence,addrs):
         self.reset_counter()
+        self.__clk = datetime.utcnow()
         self.__recv_sequence_addrs = addrs
         self.__recv_sequence = sequence
         

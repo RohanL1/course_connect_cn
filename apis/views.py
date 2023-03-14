@@ -13,7 +13,7 @@ from django.shortcuts import get_object_or_404
 from datetime import datetime 
 from django.conf import settings
 
-import httplib2
+# import httplib2
 
 # from django.core.mail import send_mail
 from decouple import config
@@ -25,33 +25,6 @@ from django.core.mail import EmailMultiAlternatives
 
 
 sub_key = 'subscribe'
-# tmp_pub_dict = {
-#     'requestID': 73, 
-#     'first_name': 'Rohan', 
-#     'last_name': 'Lagare', 
-#     'email': 'rlagare@scu.edu', 
-#     'startQuarter': 'Fall 2021', 
-#             'term': {
-#             'Fall 2021': ['COEN 202', 'COEN 201'], 
-#             'Winter 2022': ['COEN 272', 'COEN 275'], 
-#             'Spring 2022': ['COEN 239', 'COEN 240'], 
-#             'Summer 2022': ['COEN 338', 'COEN 346'], 
-#             'Fall 2022': ['COEN 383', 'COEN 396'], 
-#             'Winter 2023': ['COEN 210', 'COEN 225']
-#             }, 
-#     'planned': {
-#         'Spring 2023': ['COEN 251', 'COEN 266']
-#         }
-# }
-
-# tmp_sub_dict = {
-#   'requestID': 73,
-#   'email': 'rlagare@scu.edu',
-#   'subscribe': {
-#     'Spring 2023': ['COEN 251', 'COEN 266']
-#    }
-# }
-
 
 def get_term_from_str(str):
     tmp = str.split()
@@ -82,7 +55,8 @@ def handle_tasks(request):
                 new.user = user_data
             new.save()
             print("SUBSCIBE")
-            return JsonResponse({'requestID' : req_id, 'status': 'OK', 'data': 'SUBSCIBE task completed.', "details": new.__detail__()})
+            return JsonResponse({'ACK' : req_id, 'requestID' : req_id, 'status': 'OK', 'data': 'SUBSCIBE task completed.'})
+            # return JsonResponse({'requestID' : req_id, 'status': 'OK', 'data': 'SUBSCIBE task completed.', "details": new.__detail__()})
         else :                         #PUBLISH 
             new_user = User.objects.create(username=req_data['email'])
             new_user.email = req_data['email']
@@ -113,11 +87,12 @@ def handle_tasks(request):
             
             new_user_data.save()
             print("PUBLISH")
-        return JsonResponse({'requestID' : req_id, 'status': 'OK', 'data': 'PUBLISH task completed.'})
+        return JsonResponse({'ACK' : req_id, 'requestID' : req_id, 'status': 'OK', 'data': 'PUBLISH task completed.'})
+        # return JsonResponse({'requestID' : req_id, 'status': 'OK', 'data': 'PUBLISH task completed.', 'detail' :new_user_data.__detail__()})
     else:
         req_data = json.loads(request.body)
         req_id = req_data['requestID']
-        return JsonResponse({'requestID' : req_id, 'status': 'error', 'data': 'Invalid request method.'})
+        return JsonResponse({'ACK' : req_id, 'status': 'ERROR', 'data': 'Invalid request method.'})
 
 @csrf_exempt
 def handle_users(request):
@@ -155,12 +130,12 @@ def handle_users(request):
         return JsonResponse({'status': 'error', 'data': 'Invalid request method.'})
 
 
-@csrf_exempt
-def test_post(request):
-    req = httplib2.Http()
-    r, content = req.request('https://www.google.com',method="GET",body=None)
-    print(content)
-    return JsonResponse({'status': 'OK'}) 
+# @csrf_exempt
+# def test_post(request):
+#     req = httplib2.Http()
+#     r, content = req.request('https://www.google.com',method="GET",body=None)
+#     print(content)
+#     return JsonResponse({'status': 'OK'}) 
 
 
 @csrf_exempt
