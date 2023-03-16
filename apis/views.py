@@ -23,7 +23,9 @@ import os
 from openpyxl import Workbook
 from django.core.mail import EmailMultiAlternatives
 
+from compute_node.compute_node_mod import compute_node
 
+node = compute_node.Compute_Node()
 sub_key = 'subscribe'
 
 def get_term_from_str(str):
@@ -34,12 +36,16 @@ def get_sub_from_str(str, term):
     code = str.replace(" ", "")
     return Subject.objects.get(code= code , term=term)
 
+def send_data_to_broker(data):
+    node.send_data_to_broker(data)
+
+
 @csrf_exempt
 def handle_tasks(request):
     if request.method == 'POST':
-        # create a new user with given data 
+        # create a new user with given data
         req_data = json.loads(request.body)
-        req_id = req_data['requestID']
+        req_id = req_data["requestID"]
         if sub_key in req_data.keys(): #SUBSCIBE
             user = User.objects.get(email = req_data['email'])
             user_data = UserData.objects.get(user = user)
@@ -59,6 +65,9 @@ def handle_tasks(request):
                 new.user = user_data
             new.save()
             print("SUBSCIBE")
+            send_data_to_broker(json.dumps(
+                {'ACK' : req_id, 'requestID' : req_id, 'status': 'OK', 'data': 'SUBSCIBE task completed.'})
+            )
             return JsonResponse({'ACK' : req_id, 'requestID' : req_id, 'status': 'OK', 'data': 'SUBSCIBE task completed.'})
             # return JsonResponse({'requestID' : req_id, 'status': 'OK', 'data': 'SUBSCIBE task completed.', "details": new.__detail__()})
         else :                         #PUBLISH 
@@ -91,11 +100,17 @@ def handle_tasks(request):
             
             new_user_data.save()
             print("PUBLISH")
-        return JsonResponse({'ACK' : req_id, 'requestID' : req_id, 'status': 'OK', 'data': 'PUBLISH task completed.'})
+            send_data_to_broker(json.dumps(
+                {'ACK' : req_id, 'requestID' : req_id, 'status': 'OK', 'data': 'PUBLISH task completed.'})
+            )
+            return JsonResponse({'ACK' : req_id, 'requestID' : req_id, 'status': 'OK', 'data': 'PUBLISH task completed.'})
         # return JsonResponse({'requestID' : req_id, 'status': 'OK', 'data': 'PUBLISH task completed.', 'detail' :new_user_data.__detail__()})
     else:
         req_data = json.loads(request.body)
         req_id = req_data['requestID']
+        send_data_to_broker(json.dumps(
+                {'ACK' : req_id, 'status': 'ERROR', 'data': 'Invalid request method.'})
+            )
         return JsonResponse({'ACK' : req_id, 'status': 'ERROR', 'data': 'Invalid request method.'})
 
 @csrf_exempt

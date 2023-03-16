@@ -29,6 +29,7 @@ urlpatterns = [
     path('set/heartbeat/', views.set_heartbeat, name='set_heartbeat'),
     path('heartbeat/alive/', views.heartbeat_recv, name='heartbeat_received'),
     path('election/', views.leader_election, name='leader_election'),
+    path('initiate/election/', views.initiate_leader_election, name="initiate-election"),
     path('elected/', views.leader_elected, name="leader_elected"),
     path('failure/', views.handle_failed_node, name='handle_failed_node')
 ]

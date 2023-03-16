@@ -1,0 +1,212 @@
+{ "name": "Digital Signal Processing I", "code": "COEN201", "prof_id": 4, "term_id": 12,"credits" : 2}
+{ "name": "Digital Signal Processing I", "code": "COEN201", "prof_id": 4, "term_id": 13,"credits" : 2}
+{ "name": "Digital Signal Processing I", "code": "COEN201", "prof_id": 4, "term_id": 14,"credits" : 2}
+{ "name": "Digital Signal Processing I", "code": "COEN201", "prof_id": 4, "term_id": 15,"credits" : 2}
+{ "name": "Digital Signal Processing II", "code": "COEN202", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Digital Signal Processing II", "code": "COEN202", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Digital Signal Processing II", "code": "COEN202", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Digital Signal Processing II", "code": "COEN202", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "VLSI Design I", "code": "COEN203", "prof_id": 4, "term_id": 12,"credits" : 2}
+{ "name": "VLSI Design I", "code": "COEN203", "prof_id": 4, "term_id": 13,"credits" : 2}
+{ "name": "VLSI Design I", "code": "COEN203", "prof_id": 4, "term_id": 14,"credits" : 2}
+{ "name": "VLSI Design I", "code": "COEN203", "prof_id": 4, "term_id": 15,"credits" : 2}
+{ "name": "VLSI Design II", "code": "COEN204", "prof_id": 4, "term_id": 12,"credits" : 2}
+{ "name": "VLSI Design II", "code": "COEN204", "prof_id": 4, "term_id": 13,"credits" : 2}
+{ "name": "VLSI Design II", "code": "COEN204", "prof_id": 4, "term_id": 14,"credits" : 2}
+{ "name": "VLSI Design II", "code": "COEN204", "prof_id": 4, "term_id": 15,"credits" : 2}
+{ "name": "Computer Architecture", "code": "COEN210", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Computer Architecture", "code": "COEN210", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Computer Architecture", "code": "COEN210", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Computer Architecture", "code": "COEN210", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Secure Coding in C & C++", "code": "COEN225", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Secure Coding in C & C++", "code": "COEN225", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Secure Coding in C & C++", "code": "COEN225", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Secure Coding in C & C++", "code": "COEN225", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Computer Networks", "code": "COEN233", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Computer Networks", "code": "COEN233", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Computer Networks", "code": "COEN233", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Computer Networks", "code": "COEN233", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Multimedia Information Systems", "code": "COEN238", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Multimedia Information Systems", "code": "COEN238", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Multimedia Information Systems", "code": "COEN238", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Multimedia Information Systems", "code": "COEN238", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Network Design Analysis", "code": "COEN239", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Network Design Analysis", "code": "COEN239", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Network Design Analysis", "code": "COEN239", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Network Design Analysis", "code": "COEN239", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Machine Learning", "code": "COEN240", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Machine Learning", "code": "COEN240", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Machine Learning", "code": "COEN240", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Machine Learning", "code": "COEN240", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Cloud Computing", "code": "COEN241", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Cloud Computing", "code": "COEN241", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Cloud Computing", "code": "COEN241", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Cloud Computing", "code": "COEN241", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Big Data", "code": "COEN242", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Big Data", "code": "COEN242", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Big Data", "code": "COEN242", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Big Data", "code": "COEN242", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Network Security", "code": "COEN251", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Network Security", "code": "COEN251", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Network Security", "code": "COEN251", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Network Security", "code": "COEN251", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Artificial Intelligence", "code": "COEN266", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Artificial Intelligence", "code": "COEN266", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Artificial Intelligence", "code": "COEN266", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Artificial Intelligence", "code": "COEN266", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Mobile Application Development", "code": "COEN268", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Mobile Application Development", "code": "COEN268", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Mobile Application Development", "code": "COEN268", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Mobile Application Development", "code": "COEN268", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Web Search and Information Retrieval", "code": "COEN272", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Web Search and Information Retrieval", "code": "COEN272", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Web Search and Information Retrieval", "code": "COEN272", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Web Search and Information Retrieval", "code": "COEN272", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Object Oriented Analysis Design Programming", "code": "COEN275", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Object Oriented Analysis Design Programming", "code": "COEN275", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Object Oriented Analysis Design Programming", "code": "COEN275", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Object Oriented Analysis Design Programming", "code": "COEN275", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Human Computer Interaction", "code": "COEN277", "prof_id": 4, "term_id": 12,"credits" : 2}
+{ "name": "Human Computer Interaction", "code": "COEN277", "prof_id": 4, "term_id": 13,"credits" : 2}
+{ "name": "Human Computer Interaction", "code": "COEN277", "prof_id": 4, "term_id": 14,"credits" : 2}
+{ "name": "Human Computer Interaction", "code": "COEN277", "prof_id": 4, "term_id": 15,"credits" : 2}
+{ "name": "Advanced Web Programming", "code": "COEN278", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Advanced Web Programming", "code": "COEN278", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Advanced Web Programming", "code": "COEN278", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Advanced Web Programming", "code": "COEN278", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Design & Analysis of Algorithms", "code": "COEN279", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Design & Analysis of Algorithms", "code": "COEN279", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Design & Analysis of Algorithms", "code": "COEN279", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Design & Analysis of Algorithms", "code": "COEN279", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Database Systems", "code": "COEN280", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Database Systems", "code": "COEN280", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Database Systems", "code": "COEN280", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Database Systems", "code": "COEN280", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Pattern Recognition and Data Mining", "code": "COEN281", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Pattern Recognition and Data Mining", "code": "COEN281", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Pattern Recognition and Data Mining", "code": "COEN281", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Pattern Recognition and Data Mining", "code": "COEN281", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Operating Systems", "code": "COEN283", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Operating Systems", "code": "COEN283", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Operating Systems", "code": "COEN283", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Operating Systems", "code": "COEN283", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Software Engineering", "code": "COEN285", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Software Engineering", "code": "COEN285", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Software Engineering", "code": "COEN285", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Software Engineering", "code": "COEN285", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Software Quality Assurance and Testing", "code": "COEN286", "prof_id": 4, "term_id": 12,"credits" : 2}
+{ "name": "Software Quality Assurance and Testing", "code": "COEN286", "prof_id": 4, "term_id": 13,"credits" : 2}
+{ "name": "Software Quality Assurance and Testing", "code": "COEN286", "prof_id": 4, "term_id": 14,"credits" : 2}
+{ "name": "Software Quality Assurance and Testing", "code": "COEN286", "prof_id": 4, "term_id": 15,"credits" : 2}
+{ "name": "Software Ethics", "code": "COEN288", "prof_id": 4, "term_id": 12,"credits" : 2}
+{ "name": "Software Ethics", "code": "COEN288", "prof_id": 4, "term_id": 13,"credits" : 2}
+{ "name": "Software Ethics", "code": "COEN288", "prof_id": 4, "term_id": 14,"credits" : 2}
+{ "name": "Software Ethics", "code": "COEN288", "prof_id": 4, "term_id": 15,"credits" : 2}
+{ "name": "Computer Graphics", "code": "COEN290", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Computer Graphics", "code": "COEN290", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Computer Graphics", "code": "COEN290", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Computer Graphics", "code": "COEN290", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Computational Creativity", "code": "COEN291", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Computational Creativity", "code": "COEN291", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Computational Creativity", "code": "COEN291", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Computational Creativity", "code": "COEN291", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Topics in Computer Science and Engineering", "code": "COEN296", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Topics in Computer Science and Engineering", "code": "COEN296", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Topics in Computer Science and Engineering", "code": "COEN296", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Topics in Computer Science and Engineering", "code": "COEN296", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Logic Design Using HDL", "code": "COEN303", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Logic Design Using HDL", "code": "COEN303", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Logic Design Using HDL", "code": "COEN303", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Logic Design Using HDL", "code": "COEN303", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Advanced Computer Architecture", "code": "COEN313", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Advanced Computer Architecture", "code": "COEN313", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Advanced Computer Architecture", "code": "COEN313", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Advanced Computer Architecture", "code": "COEN313", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Web Architecture & Protocols", "code": "COEN315", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Web Architecture & Protocols", "code": "COEN315", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Web Architecture & Protocols", "code": "COEN315", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Web Architecture & Protocols", "code": "COEN315", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Distributed Systems", "code": "COEN317", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Distributed Systems", "code": "COEN317", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Distributed Systems", "code": "COEN317", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Distributed Systems", "code": "COEN317", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Parallel Computing", "code": "COEN319", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Parallel Computing", "code": "COEN319", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Parallel Computing", "code": "COEN319", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Parallel Computing", "code": "COEN319", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Network Technology", "code": "COEN329", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Network Technology", "code": "COEN329", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Network Technology", "code": "COEN329", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Network Technology", "code": "COEN329", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Wireless and Mobile Networks", "code": "COEN331", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Wireless and Mobile Networks", "code": "COEN331", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Wireless and Mobile Networks", "code": "COEN331", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Wireless and Mobile Networks", "code": "COEN331", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Wireless/Mobile Multimedia Networks", "code": "COEN332", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Wireless/Mobile Multimedia Networks", "code": "COEN332", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Wireless/Mobile Multimedia Networks", "code": "COEN332", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Wireless/Mobile Multimedia Networks", "code": "COEN332", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "High Performance Networking", "code": "COEN335", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "High Performance Networking", "code": "COEN335", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "High Performance Networking", "code": "COEN335", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "High Performance Networking", "code": "COEN335", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Image & Video Compression", "code": "COEN338", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Image & Video Compression", "code": "COEN338", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Image & Video Compression", "code": "COEN338", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Image & Video Compression", "code": "COEN338", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Digital Image Processing I", "code": "COEN340", "prof_id": 4, "term_id": 12,"credits" : 2}
+{ "name": "Digital Image Processing I", "code": "COEN340", "prof_id": 4, "term_id": 13,"credits" : 2}
+{ "name": "Digital Image Processing I", "code": "COEN340", "prof_id": 4, "term_id": 14,"credits" : 2}
+{ "name": "Digital Image Processing I", "code": "COEN340", "prof_id": 4, "term_id": 15,"credits" : 2}
+{ "name": "Deep Learning", "code": "COEN342", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Deep Learning", "code": "COEN342", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Deep Learning", "code": "COEN342", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Deep Learning", "code": "COEN342", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Computer Vision I", "code": "COEN344", "prof_id": 4, "term_id": 12,"credits" : 2}
+{ "name": "Computer Vision I", "code": "COEN344", "prof_id": 4, "term_id": 13,"credits" : 2}
+{ "name": "Computer Vision I", "code": "COEN344", "prof_id": 4, "term_id": 14,"credits" : 2}
+{ "name": "Computer Vision I", "code": "COEN344", "prof_id": 4, "term_id": 15,"credits" : 2}
+{ "name": "Computer VIsion II", "code": "COEN345", "prof_id": 4, "term_id": 12,"credits" : 2}
+{ "name": "Computer VIsion II", "code": "COEN345", "prof_id": 4, "term_id": 13,"credits" : 2}
+{ "name": "Computer VIsion II", "code": "COEN345", "prof_id": 4, "term_id": 14,"credits" : 2}
+{ "name": "Computer VIsion II", "code": "COEN345", "prof_id": 4, "term_id": 15,"credits" : 2}
+{ "name": "Natural Language Processing", "code": "COEN346", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Natural Language Processing", "code": "COEN346", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Natural Language Processing", "code": "COEN346", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Natural Language Processing", "code": "COEN346", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Social Network Analysis & Risk", "code": "COEN354", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Social Network Analysis & Risk", "code": "COEN354", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Social Network Analysis & Risk", "code": "COEN354", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Social Network Analysis & Risk", "code": "COEN354", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Design Patterns", "code": "COEN359", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Design Patterns", "code": "COEN359", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Design Patterns", "code": "COEN359", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Design Patterns", "code": "COEN359", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Advanced Design and Analysis of Algorithms", "code": "COEN379", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Advanced Design and Analysis of Algorithms", "code": "COEN379", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Advanced Design and Analysis of Algorithms", "code": "COEN379", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Advanced Design and Analysis of Algorithms", "code": "COEN379", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Advanced Database Systems", "code": "COEN380", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Advanced Database Systems", "code": "COEN380", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Advanced Database Systems", "code": "COEN380", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Advanced Database Systems", "code": "COEN380", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Advanced Operating Systems", "code": "COEN383", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Advanced Operating Systems", "code": "COEN383", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Advanced Operating Systems", "code": "COEN383", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Advanced Operating Systems", "code": "COEN383", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Advanced Topics in Computer Science and Engineering", "code": "COEN396", "prof_id": 4, "term_id": 12,"credits" : 4}
+{ "name": "Advanced Topics in Computer Science and Engineering", "code": "COEN396", "prof_id": 4, "term_id": 13,"credits" : 4}
+{ "name": "Advanced Topics in Computer Science and Engineering", "code": "COEN396", "prof_id": 4, "term_id": 14,"credits" : 4}
+{ "name": "Advanced Topics in Computer Science and Engineering", "code": "COEN396", "prof_id": 4, "term_id": 15,"credits" : 4}
+{ "name": "Directed Research", "code": "COEN493", "prof_id": 4, "term_id": 12,"credits" : 2}
+{ "name": "Directed Research", "code": "COEN493", "prof_id": 4, "term_id": 13,"credits" : 2}
+{ "name": "Directed Research", "code": "COEN493", "prof_id": 4, "term_id": 14,"credits" : 2}
+{ "name": "Directed Research", "code": "COEN493", "prof_id": 4, "term_id": 15,"credits" : 2}
+{ "name": "Masters Thesis Research", "code": "COEN497", "prof_id": 4, "term_id": 12,"credits" : 8}
+{ "name": "Masters Thesis Research", "code": "COEN497", "prof_id": 4, "term_id": 13,"credits" : 8}
+{ "name": "Masters Thesis Research", "code": "COEN497", "prof_id": 4, "term_id": 14,"credits" : 8}
+{ "name": "Masters Thesis Research", "code": "COEN497", "prof_id": 4, "term_id": 15,"credits" : 8}
+{ "name": "Independent Study", "code": "COEN499", "prof_id": 4, "term_id": 12,"credits" : 6}
+{ "name": "Independent Study", "code": "COEN499", "prof_id": 4, "term_id": 13,"credits" : 6}
+{ "name": "Independent Study", "code": "COEN499", "prof_id": 4, "term_id": 14,"credits" : 6}
+{ "name": "Independent Study", "code": "COEN499", "prof_id": 4, "term_id": 15,"credits" : 6}

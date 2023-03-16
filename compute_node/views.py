@@ -109,8 +109,14 @@ def heartbeat_recv(http_req):
 ################################################################################
 
 @csrf_exempt
+def initiate_leader_election(self):
+    aws_node.initiate_leader_election()
+    return JsonResponse({'status': 'OK'})
+
+
+@csrf_exempt
 def leader_election(http_req):
-    if(http_req.method == 'POST'):
+    if(http_req.method == 'POST'):  
         data = json.loads(http_req.body)
         addrs = data['election']
         aws_node.elect_leader(addrs)
@@ -121,7 +127,8 @@ def leader_elected(http_req):
     if(http_req.method == 'POST'):
         data = json.loads(http_req.body)
         addrs = data['elected']
-        aws_node.leader_elected(addrs)
+        aws_node.set_leader_addrs(addrs)
+        aws_node.leader_elected(data)
         return JsonResponse({'status': 'OK'})
 
 @csrf_exempt        
@@ -138,4 +145,5 @@ def assign_task(http_req):
         data = json.loads(http_req.body)
         aws_node.assign_task(data)
         return JsonResponse({'status': 'OK'})
+
 

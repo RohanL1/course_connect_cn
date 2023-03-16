@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
-from .models import Term, Professor, Subject, UserData
+from .models import *
 
 class TermAdmin(admin.ModelAdmin):
     list_display = ('name', 'year', 'start_date', 'end_date')
@@ -21,12 +21,17 @@ class UserDataInline(admin.StackedInline):
     can_delete = False
     verbose_name_plural = 'user data'
 
+class SubscribedAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'subject')
+    verbose_name = "Subscriber"
+    verbose_name_plural = "Subscribers"
+
 # class CustomUserAdmin(UserAdmin):
 #     inlines = (UserDataInline, )
 
 # admin.site.unregister(User)
 # admin.site.register(User, CustomUserAdmin)
-
+admin.site.register(Subscribed, SubscribedAdmin)
 admin.site.register(Term, TermAdmin)
 admin.site.register(Professor, ProfessorAdmin)
 admin.site.register(Subject, SubjectAdmin)

@@ -12,3 +12,5 @@ pip install djangorestframework
 pip2 install psycopg2-binary
 pip install openpyxl
 pip install schedule
+
+pip install websocket-client

@@ -11,7 +11,7 @@ class Leader:
     __worker_counter = 0
     __total_sys_nodes = None
     __http_header = 'http://'
-    __broadcast_api = "/compute_node/update_rings"
+    __broadcast_api = "/node/set/neighbour/"
     __task_api = '/apis/task/'
     __send_email_api = '/apis/send_email/'
     
@@ -30,8 +30,10 @@ class Leader:
     def compose_ring_node(self,node_list):
         for nodes in node_list:
             self.__sys_node.add_node(nodes)
+        print(f"\nFormed new communication channel for the system nodes")
             
     def broadcast_ring_node(self):
+        print(f"\nUnicasting new communcation channel to all the nodes")
         curr_node = self.__sys_node.head
         nodes_list = []
         nodes_list.append(curr_node.data)
@@ -52,7 +54,9 @@ class Leader:
             next_addr_api = self.__http_header + next_addr + self.__broadcast_api
             data = {'Next': next_addr, 'Successor':successor_addrs}
             http.request(next_addr_api,method="POST",body=json.dumps(data))
-            
+        print(f"\nUpdates all system nodes")
+        
+        
     def update_failed_node(self,node_addrs):
         self.__sys_node.remove_node(node_addrs)
         self.broadcast_ring_node()
@@ -60,14 +64,13 @@ class Leader:
     def assign_task_worker(self, task):
         index = (self.__worker_counter +1) % self.__total_sys_nodes
         worker_node_addrs = self.__sys_node_list[index]
-        self.__worker_counter += 1
         http = httplib2.Http()
         task_addrs = self.__http_header + worker_node_addrs + self.__task_api
         http.request(task_addrs,method="POST",body=json.dumps(task))
+        print(f"Task successfully assigned to the worker node")
 
     def send_email(self):
         email_addrs = self.__http_header + self.__leader_IP + self.__send_email_api
-        print(email_addrs)
         http = httplib2.Http()
         http.request(email_addrs,method="GET")
         

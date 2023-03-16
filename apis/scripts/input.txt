@@ -1,0 +1,53 @@
+COEN201|Digital Signal Processing I|2
+COEN202|Digital Signal Processing II|4
+COEN203|VLSI Design I|2
+COEN204|VLSI Design II|2
+COEN210|Computer Architecture|4
+COEN225|Secure Coding in C & C++|4
+COEN233|Computer Networks|4
+COEN238|Multimedia Information Systems|4
+COEN239|Network Design Analysis|4
+COEN240|Machine Learning|4
+COEN241|Cloud Computing|4
+COEN242|Big Data|4
+COEN251|Network Security|4
+COEN266|Artificial Intelligence|4
+COEN268|Mobile Application Development|4
+COEN272|Web Search and Information Retrieval|4
+COEN275|Object Oriented Analysis Design Programming|4
+COEN277|Human Computer Interaction|2
+COEN278|Advanced Web Programming|4
+COEN279|Design & Analysis of Algorithms|4
+COEN280|Database Systems|4
+COEN281|Pattern Recognition and Data Mining|4
+COEN283|Operating Systems|4
+COEN285|Software Engineering|4
+COEN286|Software Quality Assurance and Testing|2
+COEN288|Software Ethics|2
+COEN290|Computer Graphics|4
+COEN291|Computational Creativity|4
+COEN296|Topics in Computer Science and Engineering|4
+COEN303|Logic Design Using HDL|4
+COEN313|Advanced Computer Architecture|4
+COEN315|Web Architecture & Protocols|4
+COEN317|Distributed Systems|4
+COEN319|Parallel Computing|4
+COEN329|Network Technology|4
+COEN331|Wireless and Mobile Networks|4
+COEN332|Wireless/Mobile Multimedia Networks|4
+COEN335|High Performance Networking|4
+COEN338|Image & Video Compression|4
+COEN340|Digital Image Processing I|2
+COEN342|Deep Learning|4
+COEN344|Computer Vision I|2
+COEN345|Computer VIsion II|2
+COEN346|Natural Language Processing|4
+COEN354|Social Network Analysis & Risk|4
+COEN359|Design Patterns|4
+COEN379|Advanced Design and Analysis of Algorithms|4
+COEN380|Advanced Database Systems|4
+COEN383|Advanced Operating Systems|4
+COEN396|Advanced Topics in Computer Science and Engineering|4
+COEN493|Directed Research|2
+COEN497|Masters Thesis Research|8
+COEN499|Independent Study|6
