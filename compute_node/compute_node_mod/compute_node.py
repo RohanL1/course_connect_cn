@@ -154,7 +154,7 @@ class Compute_Node:
             print(f"\nHeartbeat received")
     
     def check_hearbeat(self):
-        if((datetime.utcnow()-self.__clk).total_seconds() < 300):
+        if((datetime.utcnow()-self.__clk).total_seconds() < 30):
             self.__counter += 1
         if(self.__counter > 3):
             print(f"\nNo heartbeat received for 3 consecutive beats. Node has failed")
