@@ -211,6 +211,7 @@ class Compute_Node:
             else:
                 self.__node_leader.compose_ring_node(req_data['nodes'])
                 self.__node_leader.broadcast_ring_node()
+                self.send_leader_to_broker()
     
     def node_failed(self, addrs):
         if(addrs == self.__node_leader.get_leader_addrs()):
