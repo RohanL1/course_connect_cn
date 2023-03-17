@@ -193,7 +193,7 @@ class Compute_Node:
         if(req_data is None):
             nodes = []
             nodes.append(self.__my_addrs)
-            data = {self.__LEADER_ELECTED_KEY : self.__my_addrs, 'nodes': nodes, 'token': 1}
+            data = {self.__LEADER_ELECTED_KEY : self.__my_addrs, 'nodes': nodes}
             print(data)
             self.reset_counter()
             self.send_elected_msg(data)
@@ -201,23 +201,16 @@ class Compute_Node:
             print(req_data)
             leader_ip = req_data[self.__LEADER_ELECTED_KEY]
             if(self.__my_addrs != leader_ip):
-                req_data['token'] = 0
-            
-            if (self.__my_addrs == leader_ip and req_data['token'] == 0):
-                self.__node_leader.compose_ring_node(req_data['nodes'])
-                self.__node_leader.broadcast_ring_node()
-                return
-
-            if(self.__my_addrs != leader_ip):
                 print(f"self.__my_addrs : {self.__my_addrs}, leader_ip:{leader_ip}")
                 self.__node_leader.set_leader_addrs(leader_ip)
                 nodes = req_data['nodes']
                 nodes.append(self.__my_addrs)
-                data = {self.__LEADER_ELECTED_KEY : self.__my_addrs, 'nodes': nodes, 'token': req_data['token']}
+                data = {self.__LEADER_ELECTED_KEY : leader_ip, 'nodes': nodes}
                 self.reset_counter()
                 self.send_elected_msg(data)
-            # else:
-                
+            else:
+                self.__node_leader.compose_ring_node(req_data['nodes'])
+                self.__node_leader.broadcast_ring_node()
     
     def node_failed(self, addrs):
         if(addrs == self.__node_leader.get_leader_addrs()):
