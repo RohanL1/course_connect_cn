@@ -202,7 +202,7 @@ class Compute_Node:
             print(req_data)
             leader_ip = req_data[self.__LEADER_ELECTED_KEY]
             if(self.__my_addrs != leader_ip):
-                self.__node_leader = leader_ip
+                self.__node_leader.set_leader_addrs(leader_ip)
                 nodes = req_data['nodes']
                 nodes.append(self.__my_addrs)
                 data = {self.__LEADER_ELECTED_KEY : self.__my_addrs, 'nodes': nodes}
