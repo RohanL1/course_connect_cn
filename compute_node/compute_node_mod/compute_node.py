@@ -101,9 +101,10 @@ class Compute_Node:
     def send_election_msg(self,msg):
         http = httplib2.Http()
         next_api = self.__http_header + self.__next_addrs + self.__election_api
-        successor_api = self.__http_header + self.__successor_addrs + self.__election_api
+        if self.__successor_addrs is not None :
+            successor_api = self.__http_header + self.__successor_addrs + self.__election_api
 
-        if(self.__next_addrs == self.__node_leader.get_leader_addrs()):
+        if(self.__next_addrs == self.__node_leader.get_leader_addrs() and self.__successor_addrs is not None):
             http.request(successor_api,method="POST",body=json.dumps(msg))
         else :
             http.request(next_api,method="POST",body=json.dumps(msg))
@@ -115,7 +116,8 @@ class Compute_Node:
         if(self.__successor_addrs != None):
             successor_api = self.__http_header + self.__successor_addrs + self.__elected_api
         if((self.__node_leader.get_leader_addrs() != None) and 
-           (self.__next_addrs == self.__node_leader.get_leader_addrs())):
+           (self.__next_addrs == self.__node_leader.get_leader_addrs()) and 
+           self.__successor_addrs is not None ):
             print(f"\nForwarding election message to next.next node ip: {self.__successor_addrs}")
             http.request(successor_api,method="POST",body=json.dumps(msg))
             print("... DONE.\n")
