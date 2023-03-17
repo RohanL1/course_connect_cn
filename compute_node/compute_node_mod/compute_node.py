@@ -171,14 +171,17 @@ class Compute_Node:
     
     def elect_leader(self, address = None):
         if(address is None):
+            self.__node_leader.set_leader_addrs(None)
             data = {self.__ELECTION_KEY:self.__my_addrs}
             self.reset_counter()
             self.send_election_msg(msg=data)
         elif(address < self.__my_addrs):
+            self.__node_leader.set_leader_addrs(None)
             data = {self.__ELECTION_KEY:address}
             self.reset_counter()
             self.send_election_msg(msg=data)
         elif(address > self.__my_addrs):
+            self.__node_leader.set_leader_addrs(None)
             data = {self.__ELECTION_KEY:self.__my_addrs}
             self.reset_counter()
             self.send_election_msg(msg=data)
