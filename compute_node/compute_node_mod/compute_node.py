@@ -111,7 +111,7 @@ class Compute_Node:
         
     def send_elected_msg(self,msg):
         http = httplib2.Http()
-        next_api = self.__http_header + self.__next_addrs + self.__election_api
+        next_api = self.__http_header + self.__next_addrs + self.__elected_api
         if(self.__successor_addrs != None):
             successor_api = self.__http_header + self.__successor_addrs + self.__elected_api
         if((self.__node_leader.get_leader_addrs() != None) and 
