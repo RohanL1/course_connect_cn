@@ -36,6 +36,7 @@ class Compute_Node:
             cls.__instance = super(Compute_Node,cls).__new__(cls)
             cls.__node_leader = new_leader.Leader()
             cls.__sequence = randint(1,84600)
+            cls.__clk = datetime.utcnow()
             print(f"\nCompute node initiated.\nCompute Node sequence : {cls.__sequence}")
         return cls.__instance
     
