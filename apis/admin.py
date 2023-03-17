@@ -5,13 +5,14 @@ from django.contrib.auth.models import User
 from .models import *
 
 class TermAdmin(admin.ModelAdmin):
-    list_display = ('name', 'year', 'start_date', 'end_date')
+    list_display = ('id', 'name', 'year', 'start_date', 'end_date')
 
 class ProfessorAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'email_id', 'phone_no')
 
 class SubjectAdmin(admin.ModelAdmin):
-    list_display = ('name', 'code', 'prof_name', 'term', 'credits')
+    list_display = ('id', 'name', 'code', 'prof_name', 'term', 'credits')
+    search_fields = ['name', 'code' ]
 
 class UserDataAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name')

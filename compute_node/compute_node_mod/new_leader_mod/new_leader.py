@@ -52,7 +52,7 @@ class Leader:
             next_addr = nodes_list[((j+1)%total_nodes)]
             successor_addrs = nodes_list[((j+2)%total_nodes)]
             next_addr_api = self.__http_header + next_addr + self.__broadcast_api
-            data = {'Next': next_addr, 'Successor':successor_addrs}
+            data = {'next': next_addr, 'successor':successor_addrs}
             http.request(next_addr_api,method="POST",body=json.dumps(data))
         print(f"\nUpdates all system nodes")
         
